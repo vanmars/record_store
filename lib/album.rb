@@ -31,7 +31,8 @@ class Album
   end
 
   def update(name)
-    @name = name
+    self.name = name
+    @@albums[self.id] = Album.new(self.name, self.id)
   end
 
   def delete
