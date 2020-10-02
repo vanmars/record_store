@@ -30,7 +30,10 @@ end
 
 post('/albums') do
   name = params[:album_name]
-  album = Album.new(name, nil)
+  year = params[:album_year]
+  genre = params[:album_genre]
+  artist = params[:album_artist]
+  album = Album.new(name, nil, year, genre, artist)
   album.save()
   @albums = Album.all()
   erb(:albums)
@@ -43,7 +46,7 @@ end
 
 patch('/albums/:id') do
   @album = Album.find(params[:id].to_i())
-  @album.update(params[:name])
+  @album.update(params[:name], params[:year], params[:genre], params[:artist])
   @albums = Album.all
   erb(:albums)
 end
